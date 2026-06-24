@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makrana Mart — Hand-Carved Marble Art</title>
+<meta name="description" content="Makrana Mart — hand-carved marble idols, temples and décor, carved in Makrana, Rajasthan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* ---- Color tokens (polished black-marble theme, warm brass inlay accent, ivory product panels) ---- */
+    --stone-black:   #19170F;   /* page background, like polished black marble */
+    --stone-charcoal:#231F17;   /* raised surfaces / header / drawer */
+    --stone-line:    #3A3325;   /* hairline borders on dark surfaces */
+    --ivory:         #F4EFE4;   /* product card panels, like white Makrana marble */
+    --ivory-dim:     #E7DFCB;
+    --gold:          #C9A227;   /* signature brass inlay accent */
+    --gold-deep:     #8F7117;   /* hover / pressed gold */
+    --text-light:    #F2EEE3;   /* body text on dark */
+    --text-muted:    #B7AD96;   /* secondary text on dark */
+    --text-dark:     #221E14;   /* body text on ivory */
+    --alert:         #8C2F2F;   /* small functional badge only */
+    --whatsapp:      #25D366;   /* recognizable utility color, functional only */
+    --radius:         2px;
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--stone-black);
+    color:var(--text-light);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    letter-spacing:.01em;
+    margin:0;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+
+  .eyebrow{
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  /* ---------- signature divider: hairline + centred diamond (marble inlay motif) ---------- */
+  .divider{
+    display:flex;align-items:center;justify-content:center;
+    gap:10px;margin:18px 0;
+  }
+  .divider::before,.divider::after{
+    content:"";height:1px;flex:1;background:var(--stone-line);
+  }
+  .divider .diamond{
+    width:7px;height:7px;background:var(--gold);
+    transform:rotate(45deg);flex:none;
+  }
+  .divider.light::before,.divider.light::after{background:var(--ivory-dim);}
+
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+  /* ---------------- header ---------------- */
+  .site-header{
+    position:sticky;top:0;z-index:40;
+    background:rgba(25,23,15,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--stone-line);
+  }
+  .header-inner{
+    max-width:var(--maxw);margin:0 auto;
+    padding:14px 20px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{
+    font-size:1.35rem;letter-spacing:.06em;text-transform:uppercase;
+    font-weight:700;
+  }
+  .logo span{color:var(--gold);}
+  .header-tag{
+    font-size:.74rem;color:var(--text-muted);
+    display:none;
+  }
+  @media(min-width:640px){.header-tag{display:block;}}
+
+  /* ---------------- hero ---------------- */
+  .hero{
+    position:relative;
+    min-height:78vh;
+    display:flex;align-items:flex-end;
+    background-image:
+      linear-gradient(180deg, rgba(20,18,11,.35) 0%, rgba(15,13,8,.92) 92%),
+      url('https://i.ibb.co/gQVcfGp/images-5.jpg'); /* hero image */
+    background-size:cover;
+    background-position:center;
+  }
+  .hero-inner{
+    max-width:var(--maxw);margin:0 auto;
+    padding:48px 20px 56px;
+    width:100%;
+  }
+  .hero h1{
+    font-size:clamp(2.3rem, 7vw, 4.2rem);
+    color:var(--ivory);
+    max-width:14ch;
+    line-height:1.05;
+  }
+  .hero p.tag{
+    margin-top:14px;
+    color:var(--text-muted);
+    font-size:1.02rem;
+    max-width:38ch;
+  }
+
+  /* signature inlay-frame button (double gold line + corner marks) */
+  .btn-inlay{
+    position:relative;
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:30px;
+    padding:14px 30px;
+    background:transparent;
+    border:1px solid var(--gold);
+    color:var(--ivory);
+    font-family:'Work Sans',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    text-decoration:none;
+    transition:background .25s,color .25s;
+  }
+  .btn-inlay::before{
+    content:"";position:absolute;inset:5px;
+    border:1px solid var(--gold);opacity:.55;pointer-events:none;
+  }
+  .btn-inlay::after{
+    content:"";position:absolute;width:6px;height:6px;
+    background:var(--gold);transform:rotate(45deg);
+    top:-3px;left:-3px;
+  }
+  .btn-inlay span.corner{
+    position:absolute;width:6px;height:6px;background:var(--gold);
+    transform:rotate(45deg);bottom:-3px;right:-3px;
+  }
+  .btn-inlay:hover{background:var(--gold);color:var(--stone-black);}
+  .btn-inlay:hover::before{opacity:0;}
+
+  /* ---------------- heritage strip ---------------- */
+  .heritage{
+    background:var(--stone-charcoal);
+    border-bottom:1px solid var(--stone-line);
+    padding:22px 20px;
+    text-align:center;
+  }
+  .heritage p{
+    max-width:62ch;margin:0 auto;
+    font-size:.92rem;color:var(--text-muted);
+  }
+  .heritage strong{color:var(--ivory);font-weight:600;}
+
+  /* ---------------- products ---------------- */
+  .products{
+    max-width:var(--maxw);margin:0 auto;
+    padding:64px 0 56px;
+  }
+  .products-head{padding:0 20px;text-align:center;}
+  .products-head h2{
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    color:var(--ivory);margin-top:6px;
+  }
+
+  .carousel-wrap{position:relative;margin-top:36px;}
+  .carousel{
+    display:flex;gap:18px;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:6px 20px 18px;
+    scrollbar-width:thin;scrollbar-color:var(--gold) transparent;
+    -webkit-overflow-scrolling:touch;
+  }
+  .carousel::-webkit-scrollbar{height:6px;}
+  .carousel::-webkit-scrollbar-thumb{background:var(--gold-deep);border-radius:4px;}
+
+  .card{
+    scroll-snap-align:start;
+    flex:0 0 76%;
+    background:var(--ivory);
+    color:var(--text-dark);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  @media(min-width:640px){.card{flex-basis:42%;}}
+  @media(min-width:980px){.card{flex-basis:27%;}}
+
+  .card-frame{
+    position:relative;padding:8px;background:var(--ivory);
+  }
+  .card-frame::before{
+    content:"";position:absolute;inset:8px;
+    border:1px solid var(--gold);opacity:.6;pointer-events:none;
+  }
+  .card-frame img{
+    width:100%;height:220px;object-fit:cover;display:block;
+  }
+
+  .card-body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card-body h3{font-size:1.25rem;color:var(--text-dark);}
+  .card-price{font-weight:700;color:var(--gold-deep);font-size:1.05rem;}
+
+  .btn-add{
+    margin-top:auto;
+    background:var(--stone-black);
+    color:var(--ivory);
+    border:none;
+    padding:11px 16px;
+    font-weight:600;font-size:.85rem;
+    letter-spacing:.04em;text-transform:uppercase;
+    transition:background .2s;
+  }
+  .btn-add:hover{background:var(--gold-deep);color:#1a1610;}
+  .btn-add.added{background:var(--gold);color:#1a1610;}
+
+  .carousel-nav{
+    display:none;
+    position:absolute;top:42%;transform:translateY(-50%);
+    width:38px;height:38px;border-radius:50%;
+    background:var(--stone-charcoal);border:1px solid var(--gold);
+    color:var(--gold);align-items:center;justify-content:center;
+    font-size:1.1rem;z-index:5;
+  }
+  @media(min-width:740px){.carousel-nav{display:flex;}}
+  .carousel-nav.prev{left:-6px;}
+  .carousel-nav.next{right:-6px;}
+
+  /* ---------------- footer ---------------- */
+  footer{
+    border-top:1px solid var(--stone-line);
+    padding:36px 20px 110px;
+    text-align:center;
+  }
+  footer .logo{font-size:1.15rem;}
+  footer p{color:var(--text-muted);font-size:.85rem;margin:4px 0;}
+  footer a.email{color:var(--gold);text-decoration:none;}
+
+  /* ---------------- floating buttons ---------------- */
+  .whatsapp-float{
+    position:fixed;left:18px;bottom:18px;z-index:50;
+    width:54px;height:54px;border-radius:50%;
+    background:var(--whatsapp);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 16px rgba(0,0,0,.4);
+    text-decoration:none;
+  }
+
+  .cart-float{
+    position:fixed;right:18px;bottom:18px;z-index:50;
+    width:58px;height:58px;border-radius:50%;
+    background:var(--gold);border:none;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 16px rgba(0,0,0,.45);
+    position:fixed;
+  }
+  .cart-badge{
+    position:absolute;top:-4px;right:-4px;
+    background:var(--alert);color:#fff;
+    font-size:.7rem;font-weight:700;
+    min-width:20px;height:20px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    border:2px solid var(--stone-black);
+  }
+
+  /* ---------------- cart drawer ---------------- */
+  .drawer-overlay{
+    position:fixed;inset:0;background:rgba(10,9,5,.6);
+    opacity:0;visibility:hidden;transition:opacity .25s;z-index:60;
+  }
+  .drawer-overlay.open{opacity:1;visibility:visible;}
+
+  .cart-drawer{
+    position:fixed;top:0;right:0;height:100%;
+    width:100%;max-width:420px;
+    background:var(--stone-charcoal);
+    border-left:1px solid var(--stone-line);
+    transform:translateX(100%);
+    transition:transform .3s ease;
+    z-index:61;
+    display:flex;flex-direction:column;
+  }
+  .cart-drawer.open{transform:translateX(0);}
+
+  .drawer-head{
+    padding:20px 20px 14px;border-bottom:1px solid var(--stone-line);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .drawer-head h2{font-size:1.4rem;color:var(--ivory);}
+  .drawer-close{
+    background:none;border:none;color:var(--text-muted);
+    font-size:1.4rem;line-height:1;padding:4px;
+  }
+
+  .cart-items{flex:1;overflow-y:auto;padding:14px 20px;}
+  .cart-empty{color:var(--text-muted);text-align:center;padding:40px 0;font-size:.92rem;}
+
+  .cart-row{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--stone-line);}
+  .cart-row img{width:58px;height:58px;object-fit:cover;border-radius:2px;flex:none;}
+  .cart-row-info{flex:1;min-width:0;}
+  .cart-row-info h4{font-size:.98rem;font-weight:600;color:var(--ivory);margin:0 0 4px;font-family:'Work Sans';}
+  .cart-row-price{font-size:.85rem;color:var(--text-muted);}
+  .qty-stepper{display:flex;align-items:center;gap:8px;margin-top:6px;}
+  .qty-stepper button{
+    width:24px;height:24px;border:1px solid var(--stone-line);background:transparent;
+    color:var(--ivory);font-size:.9rem;border-radius:2px;
+  }
+  .qty-stepper span{min-width:18px;text-align:center;font-size:.9rem;}
+  .cart-remove{background:none;border:none;color:var(--text-muted);font-size:1.1rem;align-self:flex-start;}
+  .cart-remove:hover{color:var(--alert);}
+
+  .drawer-footer{
+    border-top:1px solid var(--stone-line);
+    padding:16px 20px 22px;
+  }
+  .subtotal-row{
+    display:flex;justify-content:space-between;font-size:1.05rem;
+    margin-bottom:14px;color:var(--ivory);
+  }
+  .subtotal-row strong{color:var(--gold);}
+
+  .field{margin-bottom:10px;}
+  .field label{display:block;font-size:.75rem;color:var(--text-muted);margin-bottom:5px;letter-spacing:.04em;text-transform:uppercase;}
+  .field input{
+    width:100%;padding:10px 12px;
+    background:var(--stone-black);border:1px solid var(--stone-line);
+    color:var(--ivory);font-family:inherit;font-size:.95rem;border-radius:2px;
+  }
+  .field input:focus{border-color:var(--gold);}
+
+  .btn-send{
+    width:100%;padding:13px;margin-top:8px;
+    background:var(--gold);color:#1a1610;border:none;
+    font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.9rem;
+  }
+  .btn-send:hover{background:var(--gold-deep);}
+  .btn-send:disabled{opacity:.6;cursor:not-allowed;}
+
+  .btn-wa-fallback{
+    display:block;text-align:center;margin-top:10px;
+    font-size:.82rem;color:var(--text-muted);text-decoration:underline;
+  }
+
+  .order-status{
+    margin-top:12px;font-size:.85rem;text-align:center;min-height:1.2em;
+  }
+  .order-status.ok{color:#7fbf6a;}
+  .order-status.err{color:#e08a8a;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">Makrana<span> Mart</span></div>
+      <div class="header-tag">Hand-Carved Marble Art, Straight From the Source</div>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <p class="eyebrow">Makrana, Rajasthan</p>
+      <h1>Hand-Carved Marble Art, Straight From the Source</h1>
+      <p class="tag">Idols, temples and décor chiselled by hand in the same quarries that gave the world the Taj Mahal — now ready for your home.</p>
+      <a href="#products" class="btn-inlay" id="shopNowBtn">
+        Shop Now <span aria-hidden="true">↓</span>
+        <span class="corner" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== HERITAGE STRIP ===================== -->
+  <section class="heritage">
+    <p><strong>Makrana marble</strong> has been carved by hand for centuries — the same stone used in the Taj Mahal. Every piece here is cut, shaped and polished by local artisans, not a factory.</p>
+  </section>
+
+  <!-- ===================== PRODUCTS ===================== -->
+  <section class="products" id="products">
+    <div class="products-head">
+      <p class="eyebrow">Our Collection</p>
+      <h2>Carved to Order, Built to Last</h2>
+      <div class="divider light"><span class="diamond"></span></div>
+    </div>
+
+    <div class="carousel-wrap">
+      <button class="carousel-nav prev" id="prevBtn" aria-label="Scroll left">‹</button>
+      <div class="carousel" id="carousel"><!-- product cards injected by JS --></div>
+      <button class="carousel-nav next" id="nextBtn" aria-label="Scroll right">›</button>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="logo">Makrana<span> Mart</span></div>
+    <div class="divider" style="max-width:240px;margin:14px auto;"><span class="diamond"></span></div>
+    <p>Hand-Carved Marble Art, Straight From the Source</p>
+    <p>Order enquiries: <a class="email" href="mailto:therahmanchoudhary@gmail.com">therahmanchoudhary@gmail.com</a></p>
+    <p>© <span id="year"></span> Makrana Mart. All pieces hand-finished, slight variation in each is part of the craft.</p>
+  </footer>
+
+  <!-- ===================== FLOATING BUTTONS ===================== -->
+  <!-- NOTE: replace 99999999 with your full WhatsApp number including country code, e.g. 919876543210 -->
+  <a class="whatsapp-float" href="https://wa.me/99999999" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="white"><path d="M16 0C7.16 0 0 7.16 0 16c0 3.13.94 6.05 2.56 8.49L1.05 30.9l6.66-1.46A15.9 15.9 0 0 0 16 32c8.84 0 16-7.16 16-16S24.84 0 16 0zm0 29.2c-2.7 0-5.21-.75-7.35-2.05l-.53-.32-4.42.97.95-4.3-.35-.55A13.18 13.18 0 0 1 2.8 16C2.8 8.7 8.7 2.8 16 2.8S29.2 8.7 29.2 16 23.3 29.2 16 29.2zm7.2-9.9c-.39-.2-2.3-1.14-2.66-1.27-.36-.13-.62-.2-.88.2-.26.39-1 1.27-1.23 1.53-.23.26-.45.29-.84.1-2.27-1.13-3.76-2.02-5.26-4.58-.4-.68.4-.63 1.14-2.1.13-.26.06-.49-.07-.68-.13-.2-.96-2.31-1.31-3.16-.34-.83-.7-.72-.96-.73-.25-.01-.53-.01-.81-.01-.28 0-.74.1-1.13.52-.39.42-1.5 1.47-1.5 3.58 0 2.11 1.53 4.15 1.74 4.43.21.29 2.94 4.49 7.13 6.12 3.55 1.4 4.27 1.12 5.04 1.05.77-.07 2.49-1.02 2.84-2 .35-.97.35-1.8.25-1.97-.1-.17-.36-.27-.75-.46z"/></svg>
+  </a>
+
+  <button class="cart-float" id="cartFloatBtn" aria-label="Open cart">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1a1610" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h3l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    <span class="cart-badge" id="cartBadge">0</span>
+  </button>
+
+  <!-- ===================== CART DRAWER ===================== -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="drawer-head">
+      <h2>Your Cart</h2>
+      <button class="drawer-close" id="closeDrawerBtn" aria-label="Close cart">✕</button>
+    </div>
+
+    <div class="cart-items" id="cartItems">
+      <!-- injected by JS -->
+    </div>
+
+    <div class="drawer-footer">
+      <div class="subtotal-row"><span>Subtotal</span><strong id="subtotalVal">₹0</strong></div>
+
+      <form id="orderForm">
+        <div class="field">
+          <label for="custName">Your Name</label>
+          <input type="text" id="custName" name="custName" required placeholder="e.g. Priya Sharma">
+        </div>
+        <div class="field">
+          <label for="custPhone">Phone Number</label>
+          <input type="tel" id="custPhone" name="custPhone" required placeholder="e.g. 9876543210" pattern="[0-9+\s]{8,15}">
+        </div>
+        <button type="submit" class="btn-send" id="sendOrderBtn">Send Order</button>
+      </form>
+
+      <a href="#" id="waFallback" class="btn-wa-fallback" target="_blank" rel="noopener">or send this order on WhatsApp instead</a>
+      <p class="order-status" id="orderStatus"></p>
+    </div>
+  </aside>
+
+  <!-- EmailJS SDK (free tier — https://www.emailjs.com) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <script>
+    /* =====================================================================
+       EMAILJS SETUP — REQUIRED BEFORE "SEND ORDER" WILL WORK
+       1. Create a free account at https://www.emailjs.com (200 emails/month free)
+       2. Add an Email Service (e.g. Gmail) connected to therahmanchoudhary@gmail.com
+       3. Create an Email Template with these variables in the body:
+            {{customer_name}}  {{customer_phone}}  {{order_items}}  {{order_total}}
+          Set the template's "To Email" field to therahmanchoudhary@gmail.com
+       4. Copy your Public Key, Service ID and Template ID below.
+       ===================================================================== */
+    const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";
+    const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";
+    const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+    const OWNER_EMAIL          = "therahmanchoudhary@gmail.com";
+    const WHATSAPP_NUMBER      = "99999999"; // replace with full number incl. country code
+
+    if (window.emailjs && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
+
+    /* ---------------------------------------------------------------------
+       PRODUCT CATALOG
+       Only one product photo was supplied, so it's reused below as a
+       placeholder. Replace each "img" value with that product's own photo
+       when you have it — everything else will keep working unchanged.
+    --------------------------------------------------------------------- */
+    const PRODUCT_IMG = "https://i.ibb.co/Ldftx81S/white-marble-indoor-temple.jpg";
+
+    const PRODUCTS = [
+      { id: 1, name: "Hand-Carved Marble Temple", price: 4499, img: PRODUCT_IMG },
+      { id: 2, name: "Marble Ganesha Idol",        price: 1899, img: PRODUCT_IMG },
+      { id: 3, name: "Marble Pooja Thali Set",     price: 1299, img: PRODUCT_IMG },
+      { id: 4, name: "Marble Elephant Pair",       price: 2199, img: PRODUCT_IMG },
+      { id: 5, name: "Marble Rose Bowl",           price: 999,  img: PRODUCT_IMG },
+      { id: 6, name: "Marble Photo Frame",         price: 799,  img: PRODUCT_IMG },
+    ];
+
+    /* ----
